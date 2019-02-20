@@ -5,43 +5,38 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-public class User extends BaseObservable {
+
+public class User {
 
     @NonNull
-    private String email,password;
+    private String mEmail;
+    @NonNull
+    private String mPassword;
 
-    //alt + insert
-
-
-    public User() {
-    }
-
-    public User(@NonNull String email, @NonNull String password) {
-        this.email = email;
-        this.password = password;
+    public User(@NonNull final String email, @NonNull final String password) {
+        mEmail = email;
+        mPassword = password;
     }
 
     @NonNull
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
-    public void setEmail(@NonNull String email) {
-        this.email = email;
+    public void setEmail(@NonNull final String email) {
+        mEmail = email;
     }
 
     @NonNull
     public String getPassword() {
-        return password;
+        return mPassword;
     }
 
-    public void setPassword(@NonNull String password) {
-        this.password = password;
+    public void setPassword(@NonNull final String password) {
+        mPassword = password;
     }
 
-    public boolean isValidData(){
-        return !TextUtils.isEmpty(getEmail())&&
-                Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches()&&
-                getPassword().length() > 6;
+    public boolean isInputDataValid() {
+        return !TextUtils.isEmpty(getEmail()) && Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches() && getPassword().length() > 5;
     }
 }

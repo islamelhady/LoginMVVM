@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
@@ -27,18 +27,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:afterTextChanged="@{(editable)->viewModel.afterEmailTextChanged(editable)}"
                 android:inputType="textEmailAddress"
-                android:padding="8dp"
-                app:addTextChachgedListener="@{viewModel.getEmailTextWatcher}" />
+                android:padding="8dp" />
 
             <EditText
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:afterTextChanged="@{(editable)->viewModel.afterPasswordTextChanged(editable)}"
                 android:inputType="textPassword"
-                android:padding="8dp"
-                app:addTextChachgedListener="@{viewModel.getEmailTextWatcher}" />
+                android:padding="8dp" />
 
         </LinearLayout>
 
@@ -49,8 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:onClick="@{viewModel::onLoginClicked}"
-            android:text="LOGIN" />
+            android:onClick="@{()-> viewModel.onLoginClicked()}"
+            android:text="LOGIN"
+            bind:toastMessage="@{viewModel.toastMessage}" />
     </RelativeLayout>
 
 </layout>
